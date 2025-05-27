@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BBH CYBER TOOLS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      overflow-x: hidden;
+    }
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin: 0.2rem;
+    }
+    .container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    input {
+      width: 80%;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      outline: none;
+      background: #111;
+      color: lime;
+    }
+    button {
+      padding: 1rem 2rem;
+      background: lime;
+      color: black;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .contact {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: lime;
+      color: black;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+    }
+    .logo {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="matrix"></canvas>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo" />
+    <h1>BBH CYBER TOOLS</h1>
+    <h2>CEO ARISH AHMED TUSHAR</h2>
+  </header>
+  <div class="container">
+    <input type="text" id="url" placeholder="Paste YouTube video URL here...">
+    <br>
+    <button onclick="downloadVideo()">Download Video (4K/8K/16K)</button>
+  </div>
+  <a class="contact" href="https://www.facebook.com/arishahmedtushar287" target="_blank">Contact CEO</a>
+
+  <script>
+    const canvas = document.querySelector(".matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    let letters = Array(256).join("1").split("");
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0f0";
+      letters.map((y_pos, index) => {
+        let text = String.fromCharCode(3e4 + Math.random() * 33);
+        let x_pos = index * 10;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = y_pos > 758 + Math.random() * 1e4 ? 0 : y_pos + 10;
+      });
+    };
+    setInterval(draw, 33);
+
+    function downloadVideo() {
+      const url = document.getElementById("url").value;
+      if (!url) return alert("Please enter a YouTube URL.");
+      window.open(`https://loader.to/en16/download/${encodeURIComponent(url)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
